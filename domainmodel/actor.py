@@ -3,7 +3,7 @@ class Actor:
         if actor_full_name == "" or type(actor_full_name) is not str:
             self.__actor_full_name = None
         else:
-            self.__actor_full_name = actor_full_name
+            self.__actor_full_name = actor_full_name.strip()
         self.__colleagues = []
 
     @property

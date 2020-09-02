@@ -4,7 +4,7 @@ class Genre:
         if genre_name == "" or type(genre_name) is not str:
             self.__genre_name = None
         else:
-            self.__genre_name = genre_name
+            self.__genre_name = genre_name.strip()
 
     @property
     def genre_name(self) -> str:
