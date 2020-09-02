@@ -1,3 +1,3 @@
 
 class Genre:
-    pass
+    def __init__(self):

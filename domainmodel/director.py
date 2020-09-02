@@ -1,4 +1,3 @@
-
 class Director:
 
     def __init__(self, director_full_name: str):
@@ -15,16 +14,15 @@ class Director:
         return f"<Director {self.__director_full_name}>"
 
     def __eq__(self, other):
-        # TODO
-        pass
+        if not isinstance(other, Director):
+            return False
+        return self.director_full_name == other.director_full_name
 
     def __lt__(self, other):
-        # TODO
-        pass
+        return self.director_full_name < other.director_full_name
 
     def __hash__(self):
-        # TODO
-        pass
+        return hash(self.director_full_name)
 
 
 class TestDirectorMethods:
@@ -36,3 +34,17 @@ class TestDirectorMethods:
         assert director2.director_full_name is None
         director3 = Director(42)
         assert director3.director_full_name is None
+
+    def test_eq(self):
+        director1 = Director("Taika Waititi")
+        director2 = Director("Taika Waititi")
+        assert director1 == director2
+        director3 = Director("Sam Why")
+        assert director1 != director3
+
+    def test_lt(self):
+        director1 = Director("Taika Waititi")
+        director2 = Director("Aidan")
+        assert not director1 < director2
+        director3 = Director("Vam Why")
+        assert director1 < director3
