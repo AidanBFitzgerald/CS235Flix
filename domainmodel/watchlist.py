@@ -46,15 +46,21 @@ class TestWatchListMethods:
         watchlist.add_movie(Movie("Movie2", 2019))
         return watchlist
 
-    def test_init(self, watchlist):
+    def test_init(self):
+        watchlist_empty = WatchList()
+        assert watchlist_empty.size() == 0
+        assert watchlist_empty.first_movie_in_watchlist() is None
+        watchlist_empty.remove_movie(Movie("Mummy", 2018))
+        assert watchlist_empty.size() == 0
+
+    def test_iter(self, watchlist):
         for i in watchlist:
             assert isinstance(i, Movie)
 
-    def test_remove(self,watchlist):
+    def test_remove(self, watchlist):
         assert watchlist.size() == 2
         watchlist.remove_movie(Movie("Movie1", 2001))
         assert watchlist.size() == 1
         assert watchlist.first_movie_in_watchlist() == Movie("Movie2", 2019)
         watchlist.remove_movie(Movie("Movie2", 2019))
         assert watchlist.first_movie_in_watchlist() is None
-
