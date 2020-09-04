@@ -35,6 +35,7 @@ class WatchList:
             self.__iter_index += 1
             return ret_val
         else:
+            self.__iter_index = 0
             raise StopIteration
 
 
@@ -52,10 +53,25 @@ class TestWatchListMethods:
         assert watchlist_empty.first_movie_in_watchlist() is None
         watchlist_empty.remove_movie(Movie("Mummy", 2018))
         assert watchlist_empty.size() == 0
+        try:
+            iter1 = iter(watchlist_empty)
+            next(iter1)
+            assert False
+        except StopIteration:
+            assert True
 
     def test_iter(self, watchlist):
         for i in watchlist:
             assert isinstance(i, Movie)
+            print(i)
+        iter1 = iter(watchlist)
+        next(iter1)
+        next(iter1)
+        try:
+            next(iter1)
+            assert False
+        except StopIteration:
+            assert True
 
     def test_remove(self, watchlist):
         assert watchlist.size() == 2
@@ -64,3 +80,7 @@ class TestWatchListMethods:
         assert watchlist.first_movie_in_watchlist() == Movie("Movie2", 2019)
         watchlist.remove_movie(Movie("Movie2", 2019))
         assert watchlist.first_movie_in_watchlist() is None
+
+    def test_select_movie_to_watch(self,watchlist):
+        assert watchlist.select_movie_to_watch(1) == Movie("Movie2", 2019)
+        assert watchlist.select_movie_to_watch(3) is None
