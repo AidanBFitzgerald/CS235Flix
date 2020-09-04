@@ -49,3 +49,5 @@ class TestWatchingQueueMethods:
         assert watching_queue.watch_next() == Movie("Star Wars", 2018)
         assert watching_queue.size() == 1
         assert watching_queue.next_in_queue() == Movie("Frozen", 2013)
+        watching_queue.watch_next()
+        assert watching_queue.size() == 0
