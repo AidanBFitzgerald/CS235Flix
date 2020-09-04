@@ -38,7 +38,8 @@ class TestWatchingQueueMethods:
     def test_init(self):
         watching_queue = WatchingQueue()
         assert watching_queue.size() == 0
-        assert watching_queue.remove_from_queue(Movie("Test", 2000)) is None
+        watching_queue.remove_from_queue(Movie("Test", 2000))
+        assert watching_queue.size() == 0
         assert watching_queue.watch_next() is None
         assert watching_queue.next_in_queue() is None
 
